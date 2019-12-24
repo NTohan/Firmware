@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5.1)
 
-find_package(MAVSDK)
+find_package(MAVSDK QUIET)
 
 if (MAVSDK_FOUND)
     add_executable(mavsdk_tests
@@ -18,4 +18,6 @@ if (MAVSDK_FOUND)
 
     target_compile_options(mavsdk_tests
         PRIVATE -std=c++17 -Wall -Wextra -Werror)
+else()
+    message("MAVSDK C++ not found, skipping mavsdk_tests build..")
 endif()
